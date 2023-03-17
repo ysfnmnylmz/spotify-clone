@@ -46,11 +46,6 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
       });
     }
   };
-  componentDidUpdate(prevProps: Readonly<IDiscoverProps>, prevState: Readonly<IDiscoverState>, snapshot?: any) {
-    // @ts-ignore
-    const {access_token, request_time, expire_time} = this.props.getState().auth?.token;
-    console.log(new Date(expire_time))
-  }
 
   componentDidMount() {
     this.getTokenHandler();
