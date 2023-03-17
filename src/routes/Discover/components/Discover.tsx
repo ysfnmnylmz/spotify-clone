@@ -32,18 +32,27 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
       categories: [],
     };
   }
+  // @ts-ignore
   getTokenHandler = async () => {
-    console.log(this.props.getState());
     // @ts-ignore
-    this.props.getToken({
-      grant_type: 'client_credentials',
-      client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
-      client_secret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET,
-    });
+    const {access_token, expire_time} = this.props.getState().auth?.token;
+    const isExpiredToken = expire_time - Date.now() < 1000;
+    if(!access_token && isExpiredToken){
+      // @ts-ignore
+      this.props.getToken({
+        grant_type: 'client_credentials',
+        client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
+        client_secret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET,
+      });
+    }
   };
+  componentDidUpdate(prevProps: Readonly<IDiscoverProps>, prevState: Readonly<IDiscoverState>, snapshot?: any) {
+    // @ts-ignore
+    const {access_token, request_time, expire_time} = this.props.getState().auth?.token;
+    console.log(new Date(expire_time))
+  }
+
   componentDidMount() {
-    console.log(this.state, this.props);
-    console.log(process.env.REACT_APP_SPOTIFY_CLIENT_ID);
     this.getTokenHandler();
   }
 

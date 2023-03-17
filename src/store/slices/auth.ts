@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import getToken from '../actions/auth/getToken';
 
 type IAuth = {
@@ -6,12 +6,22 @@ type IAuth = {
   expires_in: number;
   token_type: string;
 };
+interface ITokenInfo extends IAuth {
+  request_time: number,
+  expire_time: number
+}
 interface IAuthState {
-  token: IAuth | null;
+  token: ITokenInfo | null;
 }
 
 const initialState = {
-  token: null,
+  token: {
+    access_token: null,
+    expires_in: null,
+    token_type: null,
+    request_time: null,
+    expire_time: null,
+  },
 };
 
 export const authSlice = createSlice({
@@ -21,7 +31,11 @@ export const authSlice = createSlice({
   extraReducers: {
     // @ts-ignore
     [getToken.fulfilled]: (state: IAuthState, { payload }: PayloadAction<IAuth>) => {
-      state.token = payload;
+      state.token = {
+        ...payload,
+        request_time: Date.now(),
+        expire_time: Date.now() + payload.expires_in * 1000
+      };
     },
   },
 });
