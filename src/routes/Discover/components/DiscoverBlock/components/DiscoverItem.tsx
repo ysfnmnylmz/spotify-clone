@@ -1,9 +1,9 @@
 import React from 'react';
 import '../styles/_discover-item.scss';
 
-//TODO: Fix types here
+// TODO: Fix types here
 interface IDiscoverItemProps {
-  images: Array<any>;
+  images: any[];
   name: any;
 }
 

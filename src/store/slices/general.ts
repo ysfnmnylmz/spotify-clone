@@ -1,15 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-};
+const initialState = {};
 
 export const generalSlice = createSlice({
   name: 'general',
   initialState,
-  reducers: {
-  },
+  reducers: {},
 });
 
 const { actions, reducer } = generalSlice;
-export const {  } = actions;
+export const {} = actions;
 export default reducer;

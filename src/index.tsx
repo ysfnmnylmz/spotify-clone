@@ -4,12 +4,22 @@ import Routes from './routes';
 import CoreLayout from './common/layouts/CoreLayout';
 import './styles/_main.scss';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 
+let persistor = persistStore(store);
 ReactDOM.render(
   <React.StrictMode>
-    <CoreLayout>
-      <Routes />
-    </CoreLayout>
+    <Provider store={store}>
+      {/* @ts-ignore */}
+      <PersistGate loading={null} persistor={persistor}>
+        <CoreLayout>
+          <Routes />
+        </CoreLayout>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

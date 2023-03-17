@@ -4,7 +4,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import DiscoverItem from './DiscoverItem';
 import '../styles/_discover-block.scss';
 
-//TODO: Fix types here
+// TODO: Fix types here
 
 const scrollContainer = (id: any, { isNegative }: any = {}) => {
   return () => {
