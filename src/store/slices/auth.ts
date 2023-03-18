@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import getToken from '../actions/auth/getToken';
+import getToken from 'store/actions/auth/getToken';
 
 type IAuth = {
   access_token: string;

@@ -28,6 +28,7 @@ export default class DiscoverBlock extends React.Component<IDiscoverBlockProps> 
   };
   render = () => {
     const { text, id, data, imagesKey } = this.props;
+    console.log(data)
     return (
       <div className="discover-block">
         <div className="discover-block__header">

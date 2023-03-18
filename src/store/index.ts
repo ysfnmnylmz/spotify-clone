@@ -4,11 +4,13 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 import generalSliceReducer from './slices/general';
-import authSlice from './slices/auth';
+import authSliceReducer from './slices/auth';
+import browseSliceReducer from "./slices/browse";
 
 const reducers = combineReducers<any>({
   general: generalSliceReducer,
-  auth: authSlice,
+  auth: authSliceReducer,
+  browse: browseSliceReducer
 });
 
 const persistConfig = {
