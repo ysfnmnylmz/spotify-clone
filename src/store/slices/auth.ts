@@ -27,7 +27,16 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'general',
   initialState,
-  reducers: {},
+  reducers: {
+    // @ts-ignore
+    setUserToken: (state: IAuthState, {payload}: PayloadAction<IAuth>): void => {
+      state.token = {
+        ...payload,
+        request_time: Date.now(),
+        expire_time: Date.now() + payload.expires_in * 1000
+      }
+    }
+  },
   extraReducers: {
     // @ts-ignore
     [getToken.fulfilled]: (state: IAuthState, { payload }: PayloadAction<IAuth>) => {
@@ -41,5 +50,5 @@ export const authSlice = createSlice({
 });
 
 const { actions, reducer } = authSlice;
-export const {} = actions;
+export const {setUserToken} = actions;
 export default reducer;

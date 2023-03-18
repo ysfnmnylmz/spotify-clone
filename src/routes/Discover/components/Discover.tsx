@@ -5,6 +5,7 @@ import getToken from 'store/actions/auth/getToken';
 import newRelease from "store/actions/browse/newRelease";
 import featuredPlaylists from "store/actions/browse/featuredPlaylists";
 import getCategories from "store/actions/browse/categories";
+import getUser from "store/actions/user/getUser";
 import store, { type RootState } from 'store';
 
 import '../styles/_discover.scss';
@@ -48,7 +49,8 @@ const mapDispatch = {
   getToken,
   newRelease,
   featuredPlaylists,
-  getCategories
+  getCategories,
+  getUser
 };
 const connector = connect(mapState, mapDispatch);
 
@@ -82,9 +84,12 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
         client_secret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET,
       });
     }
-    this.props.newRelease();
-    this.props.featuredPlaylists();
-    this.props.getCategories();
+    if(access_token) {
+      this.props.newRelease();
+      this.props.featuredPlaylists();
+      this.props.getCategories();
+      // this.props.getUser();
+    }
   };
 
   componentDidMount() {
@@ -95,6 +100,7 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
 
   render() {
     const { browse: {new_release, featured_playlists, categories} }: any = this.props.getState();
+    if(!new_release && !featured_playlists && !categories) return null
     return (
       <div className="discover">
         <DiscoverBlock text="RELEASED THIS WEEK" id="released" data={new_release} />
