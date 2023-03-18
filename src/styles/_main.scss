@@ -19,12 +19,15 @@ body {
   margin: 0;
   background: #f9f8ff;
 }
-
+iframe{
+  display: block!important;
+}
 html,
 body,
 #root {
   height: 100%;
 }
+
 
 .main {
   height: 100%;

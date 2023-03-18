@@ -41,12 +41,13 @@
 
   &__album {
     display: flex;
+    align-items: center;
 
     @media only screen and (max-width: 450px) {
       display: none;
     }
 
-    > span {
+    > span, &__image {
       margin-right: 20px;
       width: 50px;
       height: 50px;
@@ -54,14 +55,23 @@
       border-radius: 6px;
       display: block;
     }
+    &__playing{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
 
-    > p {
-      font-weight: 500;
-      color: $deep-grey;
-      font-size: 17px;
+      > p {
+        font-weight: 500;
+        color: $deep-grey;
+        font-size: 17px;
+        margin: 0;
 
-      @media only screen and (max-width: 1000px) {
-        display: none;
+        @media only screen and (max-width: 1000px) {
+          display: none;
+        }
+      }
+      &_artist {
+        font-size: 12px!important;
       }
     }
   }
@@ -111,10 +121,18 @@
     margin-left: 50px;
     margin-right: 50px;
     border-radius: 2px;
+    display: flex;
+    justify-content: space-between;
 
     @media only screen and (max-width: 850px) {
       margin-left: 20px;
       margin-right: 20px;
+    }
+
+    &__current, &__max {
+      margin-top: 5px;
+      font-size: 10px;
+      font-family: 'Rubik', sans-serif;
     }
   }
 

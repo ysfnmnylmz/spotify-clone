@@ -41,8 +41,6 @@ const loginWithSpotifyURL = () => {
     return `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
 }
 const ProfileSection:FC = () => {
-    const [playback, setPlayback] = useState<any>(null)
-    const [playbackID, setPlaybackID] = useState<string>('')
     const dispatch = useDispatch();
     const {user, isLogin, player} = useSelector(({user}: any) => user)
     const {token: {access_token}} = useSelector(({auth}: any) => auth)
@@ -69,83 +67,11 @@ const ProfileSection:FC = () => {
         }
     }, [user])
 
-    useEffect(()=> {
-        console.log(window)
-        // @ts-ignore
-        window.onSpotifyWebPlaybackSDKReady = () => {
-            const token = access_token;
-            // @ts-ignore
-            setPlayback(new Spotify.Player({
-                name: 'Spotify Clone Player',
-                getOAuthToken: (cb: (arg0: string) => void): any => {
-                    cb(token);
-                },
-                volume: 0.5
-            }));
-        }
-    }, [window])
-
-    useEffect(()=>{
-        console.log({playback})
-        if(playback){
-            playback.addListener('ready', ({ device_id }: any) => {
-                console.log('Ready with Device ID', device_id);
-                setPlaybackID(device_id)
-            });
-            playback.addListener('not_ready', ({ device_id }: any) => {
-                console.log('Device ID has gone offline', device_id);
-            });
-
-            playback.addListener('initialization_error', ({ message }: any) => {
-                console.error(message);
-            });
-
-            playback.addListener('authentication_error', ({ message }: any) => {
-                console.error(message);
-            });
-
-            playback.addListener('account_error', ({ message }: any) => {
-                console.error(message);
-            });
-            playback.addListener('player_state_changed', ( (state: any):any => {
-
-                if (!state) {
-                    return;
-                }
-
-                console.log('current',state.track_window.current_track);
-                console.log('paused',state.paused);
-
-
-                playback.getCurrentState().then( (state: any):any => {
-                    console.log('state',state)
-                });
-
-            }));
-            playback.connect();
-        }
-    }, [playback])
-
-    const playHandle = async () => {
-        const req ={
-            "device_id": playbackID,
-            "context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
-            "offset": {
-                "position": 5
-            },
-            "position_ms": 0
-        }
-        await setPlay(req)
-        // @ts-ignore
-        await dispatch(getDevices())
-    }
     if (user.display_name){
         return (
             <div className="sidebar__profile">
-                {/*{console.log({devices: player.devices})}*/}
                 <Avatar/>
                 <p>{user.display_name ?? 'Bob Smith'}</p>
-                <button onClick={playHandle}>TESSSSSST</button>
             </div>
         )
     }
