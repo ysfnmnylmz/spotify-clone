@@ -1,9 +1,9 @@
 import {AxiosRequestConfig} from "axios";
+import getTokenInfoFromQuery from "./getTokenInfoFromQuery";
 const injectToken = async (config: AxiosRequestConfig) => {
-    const authState = JSON.parse(localStorage.getItem('persist:root') as string) || null;
-    const {token: {access_token, token_type}} = JSON.parse(authState.auth)
-    if (access_token && token_type) {
-        config.headers.Authorization = `${token_type} ${access_token}`;
+    const a = getTokenInfoFromQuery(document.location.hash)
+    if (a.access_token && a.token_type) {
+        config.headers.Authorization = `${a.token_type} ${a.access_token}`;
     }
     return config;
 };

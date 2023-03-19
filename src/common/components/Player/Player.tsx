@@ -19,6 +19,7 @@ import msToMinutes from "libs/helpers/msToMinutes";
 import setPause from "store/actions/user/player/setPause";
 import setNext from "store/actions/user/player/setNext";
 import setPrev from "store/actions/user/player/setPrev";
+import {setPlayerID} from "../../../store/slices/player";
 
 const Player: FC = () => {
 
@@ -29,7 +30,6 @@ const Player: FC = () => {
     const [currentPlayTime, setCurrentPlayTime] = useState<number>(0)
     const [playbackID, setPlaybackID] = useState<string>('')
     const dispatch = useDispatch();
-    // const {user, isLogin, player} = useSelector(({user}: any) => user)
     const {current_track} = useSelector(({music_player}: any) => music_player)
     const {token: {access_token}} = useSelector(({auth}: any) => auth)
     useEffect(()=> {
@@ -42,10 +42,10 @@ const Player: FC = () => {
                 getOAuthToken: (cb: (arg0: string) => void): void => {
                     cb(token);
                 },
-                volume: 0.5
+                volume: 0.01
             }));
         }
-    }, [window])
+    }, [window, access_token])
     const playerStatus = () => {
         if(!played) {
             setPaused(true)
@@ -65,7 +65,7 @@ const Player: FC = () => {
             "device_id": playbackID,
             "context_uri": current_track,
             "offset": {
-                "position": 5
+                "position": 0
             },
             "position_ms": paused ? currentPlayTime : 0
         }
@@ -87,11 +87,12 @@ const Player: FC = () => {
         if(playback){
             playback.addListener('ready', ({ device_id }: any) => {
                 setPlaybackID(device_id)
+                dispatch(setPlayerID(device_id))
             });
-            // playback.addListener('not_ready', ({ device_id }: any) => {
-            // });
+            playback.addListener('not_ready', ({ device_id }: any) => {
+            });
 
-            playback.addListener('initialization_error', ({ message }: any) => {
+            playback.addListener('initialization_error', ({ message, ...o }: any) => {
                 console.error(message);
             });
 
@@ -99,7 +100,7 @@ const Player: FC = () => {
                 console.error(message);
             });
 
-            playback.addListener('account_error', ({ message }: any) => {
+            playback.addListener('account_error', ({ message, ...o }: any) => {
                 console.error(message);
             });
 

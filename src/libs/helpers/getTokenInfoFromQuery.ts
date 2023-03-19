@@ -4,10 +4,12 @@ interface IToken {
     expires_in: number
 }
 const getTokenInfoFromQuery = (hash: string): IToken => {
+    const authState = JSON.parse(localStorage.getItem('persist:root') as string) || null;
+    const {token: {access_token, token_type, expires_in}} = JSON.parse(authState.auth)
     const token_info = {
-        access_token: '',
-        token_type: '',
-        expires_in: 0
+        access_token,
+        token_type,
+        expires_in
     }
     if (hash) {
         const queryParams = hash.substring(1).split('&')

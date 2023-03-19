@@ -12,6 +12,7 @@ interface ITokenInfo extends IAuth {
 }
 interface IAuthState {
   token: ITokenInfo | null;
+  isUserLogin: boolean
 }
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
     request_time: null,
     expire_time: null,
   },
+  isUserLogin: false
 };
 
 export const authSlice = createSlice({
@@ -35,6 +37,7 @@ export const authSlice = createSlice({
         request_time: Date.now(),
         expire_time: Date.now() + payload.expires_in * 1000
       }
+      state.isUserLogin = true
     }
   },
   extraReducers: {
@@ -43,7 +46,7 @@ export const authSlice = createSlice({
       state.token = {
         ...payload,
         request_time: Date.now(),
-        expire_time: Date.now() + payload.expires_in * 1000
+        expire_time: Date.now() + payload.expires_in
       };
     },
   },

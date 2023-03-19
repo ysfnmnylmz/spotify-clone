@@ -5,7 +5,6 @@ import getToken from 'store/actions/auth/getToken';
 import newRelease from "store/actions/browse/newRelease";
 import featuredPlaylists from "store/actions/browse/featuredPlaylists";
 import getCategories from "store/actions/browse/categories";
-import getUser from "store/actions/user/getUser";
 import store, { type RootState } from 'store';
 
 import '../styles/_discover.scss';
@@ -42,6 +41,7 @@ interface INewRelease {
 }
 // TODO: Fix `any` types here
 const mapState = (state: RootState) => ({
+  ...state,
   ...store,
 });
 
@@ -49,8 +49,7 @@ const mapDispatch = {
   getToken,
   newRelease,
   featuredPlaylists,
-  getCategories,
-  getUser
+  getCategories
 };
 const connector = connect(mapState, mapDispatch);
 
@@ -76,7 +75,7 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
     // @ts-ignore
     const {access_token, expire_time} = this.props.getState().auth?.token;
     const isExpiredToken = expire_time - Date.now() < 1000;
-    if(!access_token || isExpiredToken){
+    if((!access_token || isExpiredToken) && document.location.hash === '' ){
       // @ts-ignore
       this.props.getToken({
         grant_type: 'client_credentials',
@@ -84,16 +83,25 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
         client_secret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET,
       });
     }
-    if(access_token) {
-      this.props.newRelease();
-      this.props.featuredPlaylists();
-      this.props.getCategories();
-      // this.props.getUser();
-    }
-  };
 
+  };
+  getDatas = (new_release: any, featured_playlists: any, categories: any) => {
+    // @ts-ignore
+    const {access_token} = this.props.getState().auth?.token;
+    if(access_token) {
+      !new_release && this.props.newRelease();
+      !featured_playlists && this.props.featuredPlaylists();
+      !categories && this.props.getCategories();
+    }
+  }
   componentDidMount() {
     this.getTokenHandler();
+  }
+  componentDidUpdate(prevProps: Readonly<IDiscoverProps>, prevState: Readonly<IDiscoverState>, snapshot?: any) {
+    const { browse: {new_release, featured_playlists, categories} }: any = prevProps
+    if(!new_release || !featured_playlists || !categories){
+      this.getDatas(new_release, featured_playlists, categories);
+    }
   }
 
   // TODO: Handle APIs

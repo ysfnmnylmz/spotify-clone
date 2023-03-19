@@ -33,7 +33,7 @@ export default class DiscoverBlock extends React.Component<IDiscoverBlockProps> 
         <div className="discover-block__header">
           <h2>{text}</h2>
           <span />
-          {data.length ? (
+          {data?.length ? (
             <div className="animate__animated animate__fadeIn">
               <FontAwesomeIcon icon={faChevronLeft} onClick={scrollContainer(id, { isNegative: true })} />
               <FontAwesomeIcon icon={faChevronRight} onClick={scrollContainer(id)} />
@@ -41,7 +41,7 @@ export default class DiscoverBlock extends React.Component<IDiscoverBlockProps> 
           ) : null}
         </div>
         <div className="discover-block__row" id={id}>
-          {data.map(({ uri,[imagesKey]: images, name }: any) => (
+          {data?.map(({ uri,[imagesKey]: images, name }: any) => (
             <DiscoverItem key={name} images={images} name={name} uri={uri} />
           ))}
         </div>

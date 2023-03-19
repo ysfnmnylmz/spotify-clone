@@ -42,32 +42,28 @@ const loginWithSpotifyURL = () => {
 }
 const ProfileSection:FC = () => {
     const dispatch = useDispatch();
-    const {user, isLogin, player} = useSelector(({user}: any) => user)
-    const {token: {access_token}} = useSelector(({auth}: any) => auth)
+    const {user} = useSelector(({user}: any) => user)
+    const {token: {access_token}, isUserLogin} = useSelector(({auth}: any) => auth)
     const loginHandler = async() => {
         // TODO ilk değiştirmede login olmuyor kontrol et
-        // @ts-ignore
-        await dispatch(getUser());
+        const queryToken = getTokenInfoFromQuery(document.location.hash)
+        if(access_token !== queryToken.access_token) {
+            // @ts-ignore
+            await dispatch(getUser());
+        }
+    }
+    const loginCheck = async () => {
+        await dispatch(setUserToken(getTokenInfoFromQuery(document.location.hash)));
     }
     useEffect(()=> {
-        dispatch(setUserToken(getTokenInfoFromQuery(document.location.hash)));
+        loginCheck();
     },[document.location.hash])
     useEffect(()=> {
-        if(!user.display_name && document){
+        if(!user.display_name){
             loginHandler();
         }
-    },[user.display_name, access_token])
-    const getPlayerInfo = async () => {
-        // @ts-ignore
-        await dispatch(getDevices());
-    }
-    useEffect(()=>{
-        if(user.display_name){
-            getPlayerInfo();
-        }
-    }, [user])
-
-    if (user.display_name){
+    },[user.display_name, isUserLogin, access_token])
+    if (isUserLogin && user.display_name){
         return (
             <div className="sidebar__profile">
                 <Avatar/>
