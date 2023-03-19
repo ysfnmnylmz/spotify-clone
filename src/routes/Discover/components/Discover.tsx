@@ -6,59 +6,14 @@ import newRelease from "store/actions/browse/newRelease";
 import featuredPlaylists from "store/actions/browse/featuredPlaylists";
 import getCategories from "store/actions/browse/categories";
 import store, { type RootState } from 'store';
-
+import {type INewRelease, type ICategory, type IFeaturedPlaylist} from "types";
 import '../styles/_discover.scss';
 
-interface IAlbumImage {
-  height: number,
-  url: string,
-  width: number
-}
-interface IArtists {
-  "external_urls": any,
-  "href": string,
-  "id": string,
-  "name": string,
-  "type": string,
-  "uri": string
-}
-interface INewRelease {
-  album_group: string,
-  album_type: string,
-  artists: IArtists[],
-  available_markets: string[],
-  external_urls: any,
-  href: string,
-  id: string,
-  images: IAlbumImage[],
-  is_playable: boolean,
-  name: string,
-  release_date: string,
-  release_date_precision: string,
-  total_tracks: number,
-  type: string,
-  uri: string
-}
-// TODO: Fix `any` types here
-const mapState = (state: RootState) => ({
-  ...state,
-  ...store,
-});
-
-const mapDispatch = {
-  getToken,
-  newRelease,
-  featuredPlaylists,
-  getCategories
-};
-const connector = connect(mapState, mapDispatch);
-
-type IDiscoverProps = ConnectedProps<typeof connector>;
 
 interface IDiscoverState {
-  newReleases: INewRelease [];
-  playlists: any[];
-  categories: any[];
+  newReleases: INewRelease[];
+  playlists: IFeaturedPlaylist[];
+  categories: ICategory[];
 }
 class Discover extends Component<IDiscoverProps, IDiscoverState> {
   constructor(props: IDiscoverProps) {
@@ -85,7 +40,7 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
     }
 
   };
-  getDatas = (new_release: any, featured_playlists: any, categories: any) => {
+  getDatas = (new_release: INewRelease[], featured_playlists: IFeaturedPlaylist[], categories: ICategory[]) => {
     // @ts-ignore
     const {access_token} = this.props.getState().auth?.token;
     if(access_token) {
@@ -104,8 +59,6 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
     }
   }
 
-  // TODO: Handle APIs
-
   render() {
     const { browse: {new_release, featured_playlists, categories} }: any = this.props.getState();
     if(!new_release && !featured_playlists && !categories) return null
@@ -118,5 +71,20 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
     );
   }
 }
+
+const mapState = (state: RootState) => ({
+  ...state,
+  ...store,
+});
+
+const mapDispatch = {
+  getToken,
+  newRelease,
+  featuredPlaylists,
+  getCategories
+};
+const connector = connect(mapState, mapDispatch);
+
+type IDiscoverProps = ConnectedProps<typeof connector>;
 
 export default connector(Discover);

@@ -1,22 +1,22 @@
 import React from 'react';
 import '../styles/_discover-item.scss';
-import store, {RootState} from "store";
-import {setCurrentTrack} from "store/slices/player";
+import store, {type RootState} from "store";
+import {type IPlayerState, setCurrentTrack} from "store/slices/player";
 import {connect} from "react-redux";
-import setPlay from "../../../../../store/actions/user/player/setPlay";
+import setPlay from "store/actions/user/player/setPlay";
+import {type IAlbumImage} from "types/components/Discover";
 
-// TODO: Fix types here
 interface IDiscoverItemProps {
-  images: any[];
-  name: any;
+  images: IAlbumImage[];
+  name: string;
   uri: string;
-  music_player?: any;
+  music_player?: IPlayerState;
 }
 
 class DiscoverItem extends React.Component<IDiscoverItemProps> {
     playHandle = async () => {
         const req ={
-            "device_id": this.props.music_player.id,
+            "device_id": this.props.music_player?.id,
             "context_uri": this.props.uri,
             "offset": {
                 "position": 0

@@ -1,5 +1,5 @@
 import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit';
-interface IPlayerState {
+export interface IPlayerState {
     current_track: string | null,
     id: string
 }
