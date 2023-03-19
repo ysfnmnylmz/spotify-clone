@@ -30,6 +30,7 @@ const Player: FC = () => {
     const [playbackID, setPlaybackID] = useState<string>('')
     const dispatch = useDispatch();
     const {user, isLogin, player} = useSelector(({user}: any) => user)
+    const {current_track} = useSelector(({music_player}: any) => music_player)
     const {token: {access_token}} = useSelector(({auth}: any) => auth)
     useEffect(()=> {
         // @ts-ignore
@@ -62,7 +63,7 @@ const Player: FC = () => {
     const playHandle = async () => {
         const req ={
             "device_id": playbackID,
-            "context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+            "context_uri": current_track,
             "offset": {
                 "position": 5
             },

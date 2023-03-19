@@ -41,8 +41,9 @@ export default class DiscoverBlock extends React.Component<IDiscoverBlockProps> 
           ) : null}
         </div>
         <div className="discover-block__row" id={id}>
-          {data.map(({ [imagesKey]: images, name }: any) => (
-            <DiscoverItem key={name} images={images} name={name} />
+          {console.log(data)}
+          {data.map(({ uri,[imagesKey]: images, name }: any) => (
+            <DiscoverItem key={name} images={images} name={name} uri={uri} />
           ))}
         </div>
       </div>

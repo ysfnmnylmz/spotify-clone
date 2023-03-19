@@ -7,12 +7,14 @@ import generalSliceReducer from './slices/general';
 import authSliceReducer from './slices/auth';
 import browseSliceReducer from "./slices/browse";
 import userSlice from "./slices/user";
+import playerSlice from "./slices/player";
 
 const reducers = combineReducers<any>({
   general: generalSliceReducer,
   auth: authSliceReducer,
   browse: browseSliceReducer,
-  user: userSlice
+  user: userSlice,
+  music_player: playerSlice
 });
 
 const persistConfig = {
