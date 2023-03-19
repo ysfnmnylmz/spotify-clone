@@ -5,20 +5,20 @@ import {
     faPlayCircle,
     faStepBackward,
     faEllipsisH,
-    faPauseCircle
+    faPauseCircle,
+    faHeart,
+    faRandom,
+    faRetweet,
+    faVolumeDown
 } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faRandom } from '@fortawesome/free-solid-svg-icons';
-import { faRetweet } from '@fortawesome/free-solid-svg-icons';
-import { faVolumeDown } from '@fortawesome/free-solid-svg-icons';
 import './_player.scss';
 import {useDispatch, useSelector} from "react-redux";
-import setPlay from "../../../store/actions/user/player/setPlay";
-import getDevices from "../../../store/actions/user/player/getDevices";
-import msToMinutes from "../../../libs/helpers/msToMinutes";
-import setPause from "../../../store/actions/user/player/setPause";
-import setNext from "../../../store/actions/user/player/setNext";
-import setPrev from "../../../store/actions/user/player/setPrev";
+import setPlay from "store/actions/user/player/setPlay";
+import getDevices from "store/actions/user/player/getDevices";
+import msToMinutes from "libs/helpers/msToMinutes";
+import setPause from "store/actions/user/player/setPause";
+import setNext from "store/actions/user/player/setNext";
+import setPrev from "store/actions/user/player/setPrev";
 
 const Player: FC = () => {
 
