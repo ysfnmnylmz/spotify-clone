@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import getTokenInfoFromQuery from "libs/helpers/getTokenInfoFromQuery";
 import {setUserToken} from "store/slices/auth";
 import getUser from "store/actions/user/getUser";
+import {IAlbumImage} from "../../../../types/components/Discover";
 
 interface IExternalURL {
     spotify: string
@@ -19,7 +20,7 @@ interface IUserInfo {
     "followers": IFollowers | null,
     "href": string | null,
     "id": string | null,
-    "images": object[] | null,
+    "images": IAlbumImage[] | null,
     "type": string | null,
     "uri": string | null
 }
@@ -68,7 +69,7 @@ const ProfileSection:FC = () => {
         )
     }
     return (
-        <a href={loginWithSpotifyURL()} className="sidebar__login_with_spotify">Login with Spotify</a>
+        <a href={loginWithSpotifyURL()} className="sidebar__login_with_spotify"><span>Login with Spotify</span></a>
     )
 }
 
