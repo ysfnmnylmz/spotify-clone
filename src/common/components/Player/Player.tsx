@@ -17,12 +17,15 @@ import setPlay from "../../../store/actions/user/player/setPlay";
 import getDevices from "../../../store/actions/user/player/getDevices";
 import msToMinutes from "../../../libs/helpers/msToMinutes";
 import setPause from "../../../store/actions/user/player/setPause";
+import setNext from "../../../store/actions/user/player/setNext";
+import setPrev from "../../../store/actions/user/player/setPrev";
 
 const Player: FC = () => {
 
     const [playback, setPlayback] = useState<any>(null)
     const [current, setCurrent] = useState<any>(null)
     const [played, setPlayed] = useState<boolean>(false)
+    const [paused, setPaused] = useState<boolean>(false)
     const [currentPlayTime, setCurrentPlayTime] = useState<number>(0)
     const [playbackID, setPlaybackID] = useState<string>('')
     const dispatch = useDispatch();
@@ -43,7 +46,18 @@ const Player: FC = () => {
         }
     }, [window])
     const playerStatus = () => {
+        if(!played) {
+            setPaused(true)
+        }
         setPlayed(prev => !prev)
+    }
+    const changeSongHandle = async (type: 'next' | 'prev') => {
+        const req ={
+            "device_id": playbackID,
+        }
+        type === 'next' && await setNext(req)
+        type === 'prev' && await setPrev(req)
+
     }
     const playHandle = async () => {
         const req ={
@@ -110,9 +124,9 @@ const Player: FC = () => {
                 </div>
             </div>
             <div className="player__controls">
-                <FontAwesomeIcon icon={faStepBackward} />
+                <FontAwesomeIcon icon={faStepBackward} onClick={()=> changeSongHandle('prev')} />
                 <FontAwesomeIcon icon={played ? faPauseCircle : faPlayCircle} onClick={playHandle} />
-                <FontAwesomeIcon icon={faStepForward} />
+                <FontAwesomeIcon icon={faStepForward} onClick={()=> changeSongHandle('next')}/>
             </div>
             <div className="player__seekbar" >
                 {current && <span className="player__seekbar__current">{msToMinutes(currentPlayTime)}</span>}
