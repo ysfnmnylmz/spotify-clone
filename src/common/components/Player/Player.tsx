@@ -39,7 +39,7 @@ const Player: FC = () => {
             // @ts-ignore
             setPlayback(new Spotify.Player({
                 name: 'Spotify Clone Player',
-                getOAuthToken: (cb: (arg0: string) => void): any => {
+                getOAuthToken: (cb: (arg0: string) => void): void => {
                     cb(token);
                 },
                 volume: 0.5
