@@ -66,21 +66,28 @@ const Player: FC = () => {
             "offset": {
                 "position": 5
             },
-            "position_ms": 0
+            "position_ms": paused ? currentPlayTime : 0
         }
         !played ? await setPlay(req) : await setPause(req)
         playerStatus();
         // @ts-ignore
         await dispatch(getDevices())
     }
+    const getCurrentLineWidth = (): string => {
+        let max = 0, curr = 0, percent = 0;
+        if(current?.duration_ms){
+            max = current.duration_ms;
+            curr = currentPlayTime
+            percent = (curr / max) * 100
+        }
+        return `${percent}%`
+    }
     useEffect(()=>{
         if(playback){
             playback.addListener('ready', ({ device_id }: any) => {
-                console.log('Ready with Device ID', device_id);
                 setPlaybackID(device_id)
             });
             playback.addListener('not_ready', ({ device_id }: any) => {
-                console.log('Device ID has gone offline', device_id);
             });
 
             playback.addListener('initialization_error', ({ message }: any) => {
@@ -94,20 +101,17 @@ const Player: FC = () => {
             playback.addListener('account_error', ({ message }: any) => {
                 console.error(message);
             });
+
+            playback.addListener('progress', ({position}: any) => {
+                setCurrentPlayTime(position);
+            });
             playback.addListener('player_state_changed', ( (state: any):any => {
                 if (!state) {
                     return;
                 }
-                console.log(state)
-                // if (state){
-                //     setInterval(()=> {
-                //         setCurrentPlayTime(prev => prev + 1000)
-                //     }, 1000)
-                // }
                 setCurrent(state.track_window.current_track)
-                console.log('current',state.track_window.current_track);
                 playback.getCurrentState().then( (state: any):any => {
-
+                    (!state)? setPlayed(false) : setPlayed(!state.paused)
                 });
 
             }));
@@ -129,6 +133,7 @@ const Player: FC = () => {
                 <FontAwesomeIcon icon={faStepForward} onClick={()=> changeSongHandle('next')}/>
             </div>
             <div className="player__seekbar" >
+                <div className="player__seekbar__active_line" style={{width: getCurrentLineWidth()}} />
                 {current && <span className="player__seekbar__current">{msToMinutes(currentPlayTime)}</span>}
                 {current && <span className="player__seekbar__max">{msToMinutes(current?.duration_ms)}</span>}
             </div>

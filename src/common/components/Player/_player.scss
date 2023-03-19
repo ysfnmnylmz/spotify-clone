@@ -123,12 +123,22 @@
     border-radius: 2px;
     display: flex;
     justify-content: space-between;
+    position: relative;
 
     @media only screen and (max-width: 850px) {
       margin-left: 20px;
       margin-right: 20px;
     }
-
+    &__active{
+      &_line{
+        position: absolute;
+        background-color: $primary-blue;
+        height: 4px;
+        left: 0;
+        margin-right: 50px;
+        border-radius: 2px;
+      }
+    }
     &__current, &__max {
       margin-top: 5px;
       font-size: 10px;
