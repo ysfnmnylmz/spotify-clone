@@ -29,7 +29,7 @@ const Player: FC = () => {
     const [currentPlayTime, setCurrentPlayTime] = useState<number>(0)
     const [playbackID, setPlaybackID] = useState<string>('')
     const dispatch = useDispatch();
-    const {user, isLogin, player} = useSelector(({user}: any) => user)
+    // const {user, isLogin, player} = useSelector(({user}: any) => user)
     const {current_track} = useSelector(({music_player}: any) => music_player)
     const {token: {access_token}} = useSelector(({auth}: any) => auth)
     useEffect(()=> {
@@ -88,8 +88,8 @@ const Player: FC = () => {
             playback.addListener('ready', ({ device_id }: any) => {
                 setPlaybackID(device_id)
             });
-            playback.addListener('not_ready', ({ device_id }: any) => {
-            });
+            // playback.addListener('not_ready', ({ device_id }: any) => {
+            // });
 
             playback.addListener('initialization_error', ({ message }: any) => {
                 console.error(message);
@@ -122,7 +122,7 @@ const Player: FC = () => {
     return(
         <div className="player">
             <div className="player__album">
-                {current ? <img className="player__album__image" src={current.album.images.find((i: any)=> i.size === 'SMALL').url} /> :<span/>}
+                {current ? <img className="player__album__image" src={current.album.images.find((i: any)=> i.size === 'SMALL').url} alt={current?.name} /> :<span/>}
                 <div className="player__album__playing">
                     <p style={{width: 142}}>{current?.name ?? "Nothing's playing"}</p>
                     <p className="player__album__playing_artist">{current?.artists?.[0].name}</p>
