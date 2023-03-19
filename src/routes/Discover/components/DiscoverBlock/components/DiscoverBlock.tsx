@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import DiscoverItem from './DiscoverItem';
 import '../styles/_discover-block.scss';
-import {ICategory, IFeaturedPlaylist, INewRelease} from "types";
+import {type ICategory, type IFeaturedPlaylist, type INewRelease} from "types";
 
 // TODO: Fix types here
 
