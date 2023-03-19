@@ -1,12 +1,9 @@
-import React, {type FC, useEffect, useState} from "react";
-import {ReactComponent as Avatar} from "../../../../assets/images/avatar.svg";
+import React, {type FC, useEffect} from "react";
+import {ReactComponent as Avatar} from "assets/images/avatar.svg";
 import {useDispatch, useSelector} from "react-redux";
-import getTokenInfoFromQuery from "../../../../libs/helpers/getTokenInfoFromQuery";
-import {setUserToken} from "../../../../store/slices/auth";
-import getUser from "../../../../store/actions/user/getUser";
-import {setUserStatus} from "../../../../store/slices/user";
-import getDevices from "../../../../store/actions/user/player/getDevices";
-import setPlay from "../../../../store/actions/user/player/setPlay";
+import getTokenInfoFromQuery from "libs/helpers/getTokenInfoFromQuery";
+import {setUserToken} from "store/slices/auth";
+import getUser from "store/actions/user/getUser";
 
 interface IExternalURL {
     spotify: string
@@ -45,7 +42,6 @@ const ProfileSection:FC = () => {
     const {user} = useSelector(({user}: any) => user)
     const {token: {access_token}, isUserLogin} = useSelector(({auth}: any) => auth)
     const loginHandler = async() => {
-        // TODO ilk değiştirmede login olmuyor kontrol et
         const queryToken = getTokenInfoFromQuery(document.location.hash)
         if(access_token !== queryToken.access_token) {
             // @ts-ignore
@@ -72,8 +68,7 @@ const ProfileSection:FC = () => {
         )
     }
     return (
-        <a href={loginWithSpotifyURL()}>Login
-            to Spotify</a>
+        <a href={loginWithSpotifyURL()} className="sidebar__login_with_spotify">Login with Spotify</a>
     )
 }
 

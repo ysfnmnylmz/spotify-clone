@@ -95,4 +95,11 @@
       border-radius: 50%;
     }
   }
+  &__login_with_spotify{
+    background-color: $secondary-orange;
+    color: $primary-blue;
+    text-decoration: unset;
+    padding: 10px 20px;
+    border-radius: 20px;
+  }
 }
