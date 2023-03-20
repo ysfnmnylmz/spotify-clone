@@ -1,9 +1,6 @@
 import axios from 'axios';
 import injectToken from "./helpers/injectToken";
 
-var client_id = '3951be1186b040f88187b5f099c3468e';
-var secret = '23f652f630894eb8b32ff8e57f0ce44e';
-
 const BASE_URL = 'https://api.spotify.com/v1';
 const timeout = 10000;
 
