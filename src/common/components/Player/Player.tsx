@@ -20,6 +20,7 @@ import setPause from "store/actions/user/player/setPause";
 import setNext from "store/actions/user/player/setNext";
 import setPrev from "store/actions/user/player/setPrev";
 import {setPlayerID} from "../../../store/slices/player";
+import {AppDispatch} from "../../../store";
 
 const Player: FC = () => {
 
@@ -29,7 +30,7 @@ const Player: FC = () => {
     const [paused, setPaused] = useState<boolean>(false)
     const [currentPlayTime, setCurrentPlayTime] = useState<number>(0)
     const [playbackID, setPlaybackID] = useState<string>('')
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const {current_track} = useSelector(({music_player}: any) => music_player)
     const {token: {access_token}} = useSelector(({auth}: any) => auth)
     useEffect(()=> {
@@ -71,7 +72,6 @@ const Player: FC = () => {
         }
         !played ? await setPlay(req) : await setPause(req)
         playerStatus();
-        // @ts-ignore
         await dispatch(getDevices())
     }
     const getCurrentLineWidth = (): string => {

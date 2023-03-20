@@ -6,11 +6,11 @@ type IAuth = {
   expires_in: number;
   token_type: string;
 };
-interface ITokenInfo extends IAuth {
+export interface ITokenInfo extends IAuth {
   request_time: number,
   expire_time: number
 }
-interface IAuthState {
+export interface IAuthState {
   token: ITokenInfo | null;
   isUserLogin: boolean
 }

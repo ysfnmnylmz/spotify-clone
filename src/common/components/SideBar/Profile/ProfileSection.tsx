@@ -5,6 +5,7 @@ import getTokenInfoFromQuery from "libs/helpers/getTokenInfoFromQuery";
 import {setUserToken} from "store/slices/auth";
 import getUser from "store/actions/user/getUser";
 import {IAlbumImage} from "../../../../types/components/Discover";
+import {AppDispatch, RootState} from "../../../../store";
 
 interface IExternalURL {
     spotify: string
@@ -38,14 +39,13 @@ const loginWithSpotifyURL = () => {
     const SCOPE = process.env.REACT_APP_SPOTIFY_SCOPES
     return `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
 }
-const ProfileSection:FC = () => {
-    const dispatch = useDispatch();
+const ProfileSection:FC<RootState> = () => {
+    const dispatch = useDispatch<AppDispatch>();
     const {user} = useSelector(({user}: any) => user)
     const {token: {access_token}, isUserLogin} = useSelector(({auth}: any) => auth)
     const loginHandler = async() => {
         const queryToken = getTokenInfoFromQuery(document.location.hash)
         if(access_token !== queryToken.access_token) {
-            // @ts-ignore
             await dispatch(getUser());
         }
     }

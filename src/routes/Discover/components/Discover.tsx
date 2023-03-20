@@ -8,6 +8,7 @@ import getCategories from "store/actions/browse/categories";
 import store, { type RootState } from 'store';
 import {type INewRelease, type ICategory, type IFeaturedPlaylist} from "types";
 import '../styles/_discover.scss';
+import {ITokenInfo} from "../../../store/slices/auth";
 
 
 interface IDiscoverState {
@@ -27,17 +28,15 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
       categories: [],
     };
   }
-  // @ts-ignore
   getTokenHandler = async () => {
     // @ts-ignore
-    const {access_token, expire_time} = this.props.getState().auth?.token;
+    const {access_token, expire_time}: ITokenInfo = this.props.getState().auth?.token;
     const isExpiredToken = expire_time - Date.now() < 1000;
     if((!access_token || isExpiredToken) && document.location.hash === '' ){
-      // @ts-ignore
       const tokenInfo = await this.props.getToken({
         grant_type: 'client_credentials',
-        client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
-        client_secret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET,
+        client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID as string,
+        client_secret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET as string,
       });
       sessionStorage.setItem('auth', JSON.stringify(tokenInfo.payload))
       this.setState(state => ({

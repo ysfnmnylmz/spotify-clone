@@ -4,19 +4,15 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import DiscoverItem from './DiscoverItem';
 import '../styles/_discover-block.scss';
 import {type ICategory, type IFeaturedPlaylist, type INewRelease} from "types";
-import {IAlbumImage} from "types/components/Discover";
-
-// TODO: Fix types here
 interface IDataItem extends IFeaturedPlaylist, ICategory, INewRelease {
   uri: string,
-  images: IAlbumImage[],
   name: string
 }
 interface IDiscoverBlockProps {
   text: string;
   id: string;
   data: IDataItem[];
-  imagesKey: 'images';
+  imagesKey: 'images' | 'icons' ;
 }
 
 interface IScrollPosition {

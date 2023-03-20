@@ -13,19 +13,16 @@ export const browseSlice = createSlice({
   name: 'general',
   initialState,
   reducers: {},
-  extraReducers: {
-    // @ts-ignore
-    [newRelease.fulfilled]: (state, {payload}: any) => {
+  extraReducers:(builder)=> {
+    builder.addCase(newRelease.fulfilled, (state, {payload})=>{
       state.new_release = payload.albums.items;
-    },
-    // @ts-ignore
-    [featuredPlaylists.fulfilled]: (state, {payload}: any) => {
+    })
+    builder.addCase(featuredPlaylists.fulfilled, (state, {payload})=>{
       state.featured_playlists = payload.playlists.items;
-    },
-    // @ts-ignore
-    [getCategories.fulfilled]: (state, {payload}: any) => {
+    })
+    builder.addCase(getCategories.fulfilled, (state, {payload})=>{
       state.categories = payload.categories.items;
-    }
+    })
   }
 });
 
