@@ -10,11 +10,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import './_sidebar.scss';
 import {ProfileSection} from "./Profile";
+import {type IconProp} from "@fortawesome/fontawesome-svg-core";
 
 interface ISelectState {
     selected?: boolean
 }
-const renderSideBarOption = (link: string, icon: any, text: string, { selected }: ISelectState = {}) => {
+const renderSideBarOption = (link: string, icon: IconProp, text: string, { selected }: ISelectState = {}) => {
   return (
     <div className={cx('sidebar__option', { 'sidebar__option--selected': selected })}>
       <FontAwesomeIcon icon={icon} />
