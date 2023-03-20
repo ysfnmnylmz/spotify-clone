@@ -60,7 +60,7 @@ export interface IFeaturedPlaylist {
     "snapshot_id": string,
     "tracks": ITracks,
     "type": string,
-    "uri": string
+    "uri": string,
 }
 
 export interface ICategory {

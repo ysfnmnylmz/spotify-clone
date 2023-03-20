@@ -4,14 +4,19 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import DiscoverItem from './DiscoverItem';
 import '../styles/_discover-block.scss';
 import {type ICategory, type IFeaturedPlaylist, type INewRelease} from "types";
+import {IAlbumImage} from "types/components/Discover";
 
 // TODO: Fix types here
-
+interface IDataItem extends IFeaturedPlaylist, ICategory, INewRelease {
+  uri: string,
+  images: IAlbumImage[],
+  name: string
+}
 interface IDiscoverBlockProps {
   text: string;
   id: string;
-  data: (IFeaturedPlaylist | ICategory | INewRelease)[];
-  imagesKey: string;
+  data: IDataItem[];
+  imagesKey: 'images';
 }
 
 interface IScrollPosition {
@@ -45,7 +50,7 @@ export default class DiscoverBlock extends React.Component<IDiscoverBlockProps> 
           ) : null}
         </div>
         <div className="discover-block__row" id={id}>
-          {data?.map(({ uri,[imagesKey]: images, name }: any) => (
+          {data?.map(({ uri,[imagesKey]: images, name }: IDataItem) => (
             <DiscoverItem key={name} images={images} name={name} uri={uri} />
           ))}
         </div>
