@@ -1,8 +1,3 @@
-<div align="center">
- <h2> Frontend Challenge 379 </h2>
-</div>
-<br/>
-
 <p align="center">
 Build with <a href="https://reactjs.org/" target="_blank">React.js v17</a> & <a href="https://redux.js.org/" target="_blank">Redux Toolkit</a> & <a href="https://sass-lang.com/" target="_blank">SASS</a></p>
 
