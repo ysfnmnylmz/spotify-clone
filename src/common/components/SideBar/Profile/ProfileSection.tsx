@@ -32,7 +32,7 @@ interface IProfileProps {
 
 const loginWithSpotifyURL = () => {
     const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-    const REDIRECT_URI = "http://localhost:3000"
+    const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URL
     const AUTH_ENDPOINT = process.env.REACT_APP_SPOTIFY_USER_AUTH_URL
     const RESPONSE_TYPE = "token"
     const SCOPE = process.env.REACT_APP_SPOTIFY_SCOPES
