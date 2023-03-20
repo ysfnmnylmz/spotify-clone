@@ -14,12 +14,14 @@ interface IDiscoverState {
   newReleases: INewRelease[];
   playlists: IFeaturedPlaylist[];
   categories: ICategory[];
+  stateToken: string | null;
 }
 class Discover extends Component<IDiscoverProps, IDiscoverState> {
   constructor(props: IDiscoverProps) {
     super(props);
 
     this.state = {
+      stateToken: null,
       newReleases: [],
       playlists: [],
       categories: [],
@@ -32,18 +34,23 @@ class Discover extends Component<IDiscoverProps, IDiscoverState> {
     const isExpiredToken = expire_time - Date.now() < 1000;
     if((!access_token || isExpiredToken) && document.location.hash === '' ){
       // @ts-ignore
-      this.props.getToken({
+      const tokenInfo = await this.props.getToken({
         grant_type: 'client_credentials',
         client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
         client_secret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET,
       });
+      sessionStorage.setItem('auth', JSON.stringify(tokenInfo.payload))
+      this.setState(state => ({
+        ...state,
+        stateToken: tokenInfo.payload.access_token
+      }))
     }
 
   };
   getDatas = (new_release: INewRelease[], featured_playlists: IFeaturedPlaylist[], categories: ICategory[]) => {
     // @ts-ignore
     const {access_token} = this.props.getState().auth?.token;
-    if(access_token) {
+    if(access_token || this.state.stateToken) {
       !new_release && this.props.newRelease();
       !featured_playlists && this.props.featuredPlaylists();
       !categories && this.props.getCategories();
