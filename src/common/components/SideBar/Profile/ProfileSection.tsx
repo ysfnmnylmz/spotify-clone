@@ -4,32 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import getTokenInfoFromQuery from "libs/helpers/getTokenInfoFromQuery";
 import {setUserToken} from "store/slices/auth";
 import getUser from "store/actions/user/getUser";
-import {IAlbumImage} from "../../../../types/components/Discover";
-import {AppDispatch, RootState} from "../../../../store";
-
-interface IExternalURL {
-    spotify: string
-}
-interface IFollowers {
-    href: string,
-    total: number
-}
-
-interface IUserInfo {
-    "display_name": string | null,
-    "external_urls": IExternalURL | null,
-    "followers": IFollowers | null,
-    "href": string | null,
-    "id": string | null,
-    "images": IAlbumImage[] | null,
-    "type": string | null,
-    "uri": string | null
-}
-interface IProfileProps {
-    user_info: IUserInfo,
-    isLogin: boolean
-}
-// spotify:album:79ONNoS4M9tfIA1mYLBYVX
+import {type AppDispatch} from "store";
 
 const loginWithSpotifyURL = () => {
     const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
@@ -39,12 +14,13 @@ const loginWithSpotifyURL = () => {
     const SCOPE = process.env.REACT_APP_SPOTIFY_SCOPES
     return `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
 }
-const ProfileSection:FC<RootState> = () => {
+const ProfileSection:FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const {user} = useSelector(({user}: any) => user)
     const {token: {access_token}, isUserLogin} = useSelector(({auth}: any) => auth)
     const loginHandler = async() => {
         const queryToken = getTokenInfoFromQuery(document.location.hash)
+        console.log({queryToken})
         if(access_token !== queryToken.access_token) {
             await dispatch(getUser());
         }
