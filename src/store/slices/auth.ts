@@ -43,10 +43,11 @@ export const authSlice = createSlice({
   extraReducers: {
     // @ts-ignore
     [getToken.fulfilled]: (state: IAuthState, { payload }: PayloadAction<IAuth>) => {
+      console.log({payload})
       state.token = {
         ...payload,
         request_time: Date.now(),
-        expire_time: Date.now() + payload.expires_in
+        expire_time: Date.now() + payload.expires_in * 1000
       };
     },
   },
