@@ -18,7 +18,6 @@ const getTokenInfoFromQuery = (hash: string): IToken => {
         token_info.token_type = queryParams.find(el => el.startsWith('token_type'))?.split('=')[1]
         token_info.expires_in = Number(queryParams.find(el => el.startsWith('expires_in'))?.split('=')[1])
     }
-    console.log({token_info})
     return token_info
 }
 

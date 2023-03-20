@@ -20,8 +20,7 @@ const ProfileSection:FC = () => {
     const {token: {access_token}, isUserLogin} = useSelector(({auth}: any) => auth)
     const loginHandler = async() => {
         const queryToken = getTokenInfoFromQuery(document.location.hash)
-        console.log({queryToken})
-        if(access_token !== queryToken.access_token) {
+        if(queryToken && (access_token !== queryToken.access_token)) {
             await dispatch(getUser());
         }
     }
