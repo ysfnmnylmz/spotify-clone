@@ -43,7 +43,7 @@ const Player: FC = () => {
                 getOAuthToken: (cb: (arg0: string) => void): void => {
                     cb(token);
                 },
-                volume: 0.01
+                volume: 0.5
             }));
         }
     }, [window, access_token])
