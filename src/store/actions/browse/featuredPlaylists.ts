@@ -6,7 +6,6 @@ const featuredPlaylists = createAsyncThunk('browse/featured-playlists', async (d
         const response = await api.get('browse/featured-playlists');
         return response.data;
     } catch (e) {
-        console.log(e);
         return rejectWithValue(e);
     }
 });

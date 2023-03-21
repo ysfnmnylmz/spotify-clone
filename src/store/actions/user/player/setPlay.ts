@@ -6,7 +6,6 @@ const setPlay = async (data: any) => {
         const response = await api.put('me/player/play', otherData, {params: {device_id}} );
         return response.data;
     } catch (e) {
-        console.log(e);
         return (e);
     }
 };

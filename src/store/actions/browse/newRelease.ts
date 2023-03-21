@@ -6,7 +6,6 @@ const newRelease = createAsyncThunk('browse/new-release', async (data, { rejectW
         const response = await api.get('browse/new-releases');
         return response.data;
     } catch (e) {
-        console.log(e);
         return rejectWithValue(e);
     }
 });

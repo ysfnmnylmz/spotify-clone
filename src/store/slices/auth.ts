@@ -35,7 +35,7 @@ export const authSlice = createSlice({
       state.token = {
         ...payload,
         request_time: Date.now(),
-        expire_time: Date.now() + (payload.expires_in ?? 0) * 1000
+        expire_time: Date.now() + (payload?.expires_in ?? 0) * 1000
       }
       state.isUserLogin = true
     }
@@ -46,7 +46,7 @@ export const authSlice = createSlice({
       state.token = {
         ...payload,
         request_time: Date.now(),
-        expire_time: Date.now() + (payload.expires_in ?? 0) * 1000
+        expire_time: Date.now() + (payload?.expires_in ?? 0) * 1000
       };
     },
   },

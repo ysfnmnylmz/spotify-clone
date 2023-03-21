@@ -6,7 +6,6 @@ const getUser = createAsyncThunk('me', async (data, { rejectWithValue }) => {
         const response = await api.get('me');
         return response.data;
     } catch (e) {
-        console.log(e);
         return rejectWithValue(e);
     }
 });

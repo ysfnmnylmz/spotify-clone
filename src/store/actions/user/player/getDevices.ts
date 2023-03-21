@@ -6,7 +6,6 @@ const getDevices = createAsyncThunk('me/player/devices', async (data, { rejectWi
         const response = await api.get('me/player/devices');
         return response.data;
     } catch (e) {
-        console.log(e);
         return rejectWithValue(e);
     }
 });

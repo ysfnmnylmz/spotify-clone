@@ -6,7 +6,6 @@ const getCategories = createAsyncThunk('browse/categories', async (data, { rejec
         const response = await api.get('browse/categories');
         return response.data;
     } catch (e) {
-        console.log(e);
         return rejectWithValue(e);
     }
 });
