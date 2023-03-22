@@ -6,7 +6,7 @@ interface IToken {
 const getTokenInfoFromQuery = (hash: string): IToken => {
     const authState = JSON.parse(localStorage.getItem('persist:root') as string) || null;
     let token_info;
-    if(authState) {
+    if(authState.auth?.token?.access_token) {
         const {token} = JSON.parse(authState.auth)
         token_info = token
     }else {

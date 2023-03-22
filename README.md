@@ -31,6 +31,15 @@ npm run build
 yarn build
 ```
 
+
+## 🐳  Build and Run with Docker
+
+
+```bash
+docker compose build
+docker compose up
+```
+
 ## Environment Variables
 
 REACT_APP_SPOTIFY_CLIENT_ID=YOUR_SPOTIFY_CLIENT_ID
